@@ -4,12 +4,18 @@ import click
 import requests
 
 @click.command()
-@click.option('--question', '-q',  help='Question to ask.')
-def ask_defacto(question: str):
-    url = "http://api.open-notify.org/astros.json"
-    response = requests.get(url)
+def ask_defacto():
+    while True:
+        question = click.prompt('Hi there, what can I help you with?', type=str, default="")
+        if not question:
+            break
+        print(question)
+        url = "http://api.open-notify.org/astros.json"
+        response = requests.get(url)
+        click.echo(response.json())
 
-    click.echo(response.json())
+    print("kthxbye")
+
 
 
 if __name__ == '__main__':
