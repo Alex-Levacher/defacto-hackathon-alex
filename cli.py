@@ -9,9 +9,9 @@ def ask_defacto():
         question = click.prompt('Hi there, what can I help you with?', type=str, default="")
         if not question:
             break
-        print(question)
-        url = "http://api.open-notify.org/astros.json"
-        response = requests.get(url)
+        url = "http://localhost:3000/api/ask"
+
+        response = requests.post(url=url, json = {'question': question})
         click.echo(response.json())
 
     print("kthxbye")
